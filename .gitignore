@@ -14,3 +14,4 @@ uploads
 conf/application.conf
 .DS_Store
 conf/project/build.properties
+.bsp/*
