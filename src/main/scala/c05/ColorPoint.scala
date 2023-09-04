@@ -7,16 +7,16 @@ class ColorPoint(val x: Double, var y: Double) {
     color = Some(aColor)
   }
   def foo(): Unit = {
-    //if(color.isDefined)
+    // if(color.isDefined)
     //  println(color.get.trim)
 
     color.map((x: String) => println(x))
   }
 }
 
-object Main{
+object ColorPoint {
   def main(args: Array[String]): Unit = {
-    val c = new ColorPoint(1,1)
+    val c = new ColorPoint(1, 1)
     c.setColor("Red")
     c.foo()
 

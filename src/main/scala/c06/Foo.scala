@@ -15,7 +15,13 @@ class Bar extends Foo {
   def bluelabel(): String = "un elissir"
 }
 
-object Main {
+object Foo {
   val b: Bar = new Bar()
   b.bluelabel()
+  import scala.collection.mutable.ListBuffer
+  def main(args: Array[String]): Unit = {
+    val l = ListBuffer(1, 2, 3)
+    l += 4 // ListBuffer(1,2,3,4)
+    println(l)
+  }
 }
