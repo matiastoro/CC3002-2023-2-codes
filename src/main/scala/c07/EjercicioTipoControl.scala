@@ -11,6 +11,7 @@ object EjercicioTipoControl {
       this(name)
       println("B2")
     }
+    this.getClass()
     def foo() = 2
   }
   class C extends B("Foo") {
