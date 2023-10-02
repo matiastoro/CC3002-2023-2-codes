@@ -25,3 +25,9 @@ object Foo {
     println(l)
   }
 }
+
+class X {
+  def foo() = {
+    1 + 2
+  }
+}
