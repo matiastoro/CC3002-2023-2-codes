@@ -1,15 +1,9 @@
 package c09
 
-class Money(private val value: Int, private val currency: String) {
+class Money(private val value: Int, private val currency: String)
+    extends IMoney {
   def getValue: Int = this.value
   def getCurrency: String = this.currency
-
-  def add(other: Money): Money = {
-    // if (currency == other.currency)
-    new Money(value + other.value, currency)
-    // else
-    //  new MoneyBag(this, other)
-  }
 
   override def toString(): String = {
     s"Money(${value}, ${currency})"
@@ -22,25 +16,23 @@ class Money(private val value: Int, private val currency: String) {
     } else false
   }
 
-  /*private def canEqual(other: Any): Boolean = other.isInstanceOf[Money]
-
-  override def equals(other: Any): Boolean = other match {
-    case that: Money =>
-      that.canEqual(this) &&
-        value == that.value &&
-        currency == that.currency
-    case _ => false
+  def add(m: IMoney): IMoney = {
+    // No sabemos si m es un Money, o un MoneyBag. Como nos sumamos?
+    m.addMoney(this)
   }
 
-  override def hashCode(): Int = {
-    val state = Seq(value, currency)
-    state.map(_.hashCode()).foldLeft(0)((a, b) => 31 * a + b)
-  }*/
+  def addMoneySameCurrency(money: Money): Money = {
+    assert(this.currency == money.currency)
+    new Money(value + money.value, currency)
+  }
+  def addMoney(m: Money): IMoney = {
+    if (currency == m.currency)
+      addMoneySameCurrency(m)
+    else
+      new MoneyBag(this, m)
+  }
+
+  def addMoneyBag(m: MoneyBag): IMoney = {
+    m.addMoney(this)
+  }
 }
-
-/*
-class Foo{
-  def bar(x: Money) = {
-    x.value // ouch!
-  }
-}*/

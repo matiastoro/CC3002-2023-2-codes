@@ -54,8 +54,8 @@ class MoneyTest extends munit.FunSuite {
   }
 
   test("mixed simple add") {
-    val expected: MoneyBag = new MoneyBag(clp10, usd10)
-    // assertEquals(expected, clp10.add(usd10))// :( no se puede por ahora
+    val expected: IMoney = new MoneyBag(clp10, usd10)
+    assertEquals(expected, clp10.add(usd10)) // :( no se puede por ahora
   }
 
 }
