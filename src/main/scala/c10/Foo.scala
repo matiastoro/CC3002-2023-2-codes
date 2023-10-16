@@ -43,6 +43,7 @@ object Example2 {
       x = 10
     }
   }
+  Option
 
   def main(argv: Array[String]): Unit = {
     println(foo)
