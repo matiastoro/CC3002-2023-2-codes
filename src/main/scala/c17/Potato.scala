@@ -1,3 +1,7 @@
 package c17
 
-class Potato(year: Int) extends AbstractItem("papa", year) {}
+import c17.visitors.Visitor
+
+class Potato(year: Int) extends AbstractItem("papa", year) {
+  override def accept(v: Visitor): Boolean = v.visitPotato(this)
+}

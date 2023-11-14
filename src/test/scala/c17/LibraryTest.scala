@@ -3,7 +3,7 @@ import scala.collection.mutable.Set
 
 class LibraryTest extends munit.FunSuite {
   var l: Library = _
-  var s1: Serie = new Serie("The Walking Dead", 2010)
+  var s1: Series = new Series("The Walking Dead", 2010)
   val g1: Game = new Game("Tomb Raider", 2002)
   val c1: Comic = new Comic("The Walking Dead", 2000)
   val p1: Potato = new Potato(2023)
@@ -23,7 +23,7 @@ class LibraryTest extends munit.FunSuite {
   test("search by name") {
     l.add(s1)
     l.add(g1)
-    val expected: Set[Item] = Set(new Serie("The Walking Dead", 2010))
+    val expected: Set[Item] = Set(new Series("The Walking Dead", 2010))
 
     assertEquals(
       l.searchByPredicate(new ByName(s1.getName())).toSet,
@@ -111,6 +111,21 @@ class LibraryTest extends munit.FunSuite {
       )
     )
     val expected = Set[Item](c1, p1)
+    assertEquals(result, expected)
+  }
+
+  test("byGame") {
+    l.add(s1)
+    l.add(g1)
+    l.add(c1)
+    l.add(p1)
+    val result = l.searchByPredicate(
+      new Or(
+        new ByGame(),
+        new ByComic()
+      )
+    )
+    val expected = Set[Item](g1, c1)
     assertEquals(result, expected)
   }
 }
